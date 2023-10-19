@@ -22,18 +22,25 @@ function generateRandomPersonName() {
   return `${randomFirstName} ${randomLastName}:`;
 }
 
+function randomColor() {
+  return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
+}
 
 class App extends Component {
-  state = {
-    messages: [],
-    member: {
-      username: generateRandomPersonName(),
-    },
-  };
+  constructor() {
+    super();
+    this.state = {
+      messages: [],
+      member: {
+        username: generateRandomPersonName(),
+        color: randomColor(),
+      },
+    };
 
-  drone = new window.Scaledrone("u0IDwIGVoaGy9hGl", {
-    data: this.state.member,
-  });
+    this.drone = new window.Scaledrone("u0IDwIGVoaGy9hGl", {
+      data: this.state.member,
+    });
+  }
 
   componentDidMount() {
     this.drone.on("open", (error) => {
@@ -44,27 +51,30 @@ class App extends Component {
       member.id = this.drone.clientId;
       this.setState({ member });
     });
-
     const room = this.drone.subscribe("observable-room");
     room.on("data", (data, member) => {
-      const messages = [...this.state.messages];
+      const messages = this.state.messages;
       messages.push({ member, text: data });
       this.setState({ messages });
     });
   }
 
   onSendMessage = (message) => {
-    this.drone.publish({
-      room: "observable-room",
-      message,
-    });
+    if (message === "") {
+      alert("Say something?");
+    } else {
+      this.drone.publish({
+        room: "observable-room",
+        message,
+      });
+    }
   };
 
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <h1>Chat App</h1>
+        <h1>Chat App</h1>
         </div>
         <Messages
           messages={this.state.messages}

@@ -2,14 +2,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: right;
   min-height: 100vh;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #f5f5f5;
-  padding: 5px;
-  max-width: 500px;
-  margin: 0 auto;
-  box-sizing: border-box;
 }
 
 .App-header {
@@ -20,44 +15,62 @@
 }
 
 .Messages-list {
+  padding: 20px 0;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
   list-style: none;
-  padding: 0;
-  margin: 0;
-  overflow: auto;
+  padding-left: 0;
   flex-grow: 1;
+  overflow: auto;
 }
 
 .Messages-message {
-  margin: 10px 0;
   display: flex;
-  align-items: flex-start;
+  margin-top: 10px;
 }
 
 .Messages-message.currentMember {
+  /*justify-content: flex-end;*/
   flex-direction: row-reverse;
   text-align: right;
 }
 
 .Message-content {
   display: inline-block;
-  background-color: #e0e9f3;
-  color: #0084FF;
-  padding: 10px;
-  border-radius: 15px;
-  max-width: 70%;
-  word-wrap: break-word;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .currentMember > .Message-content {
-  background-color: #e4e1e1;
+  align-items: flex-end;
+}
+
+.Messages-message > .avatar {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 10px -10px;
 }
 
 .Message-content > .username {
   display: block;
-  color: rgb(0, 0, 0);
+  color: gray;
   font-size: 14px;
   padding-bottom: 4px;
+}
+
+.Message-content > .text {
+  padding: 10px;
+  max-width: 400px;
+  margin: 0;
+  border-radius: 12px;
+  background-color: cornflowerblue;
+  color: white;
+  display: inline-block;
+}
+
+.currentMember > .Message-content .text {
+  background-color: rgb(95, 93, 93);
 }
 
 form {
@@ -65,16 +78,15 @@ form {
   width: 100%;
   justify-content: space-between;
   max-width: 900px;
-  margin: 20px auto;
+  margin: 0 auto 40px;
 }
 
 input {
-  padding: 10px;
+  padding: 5px;
   font-size: 16px;
-  border-radius: 25px;
-  border: 1px solid #ddd;
+  border-radius: 8px;
+  border: 1px solid gray;
   flex-grow: 1;
-  outline: none;
 }
 
 button {

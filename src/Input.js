@@ -38,7 +38,7 @@ class Input extends Component {
             type="text"
             placeholder="Say something?"
             ref={this.inputRef}
-            autoFocus
+            autoFocus={true}
           />
           <button>Send</button>
         </form>
