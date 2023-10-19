@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+After cloning position inside chat-app directory and run <b>npm install</b> to ensure all modules that are needed are installed.
+
 ## Available Scripts
 
 In the project directory, you can run:
